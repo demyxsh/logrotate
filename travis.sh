@@ -4,7 +4,7 @@ set -euo pipefail
 IFS=$'\n\t'
 
 # Get versions
-DEMYX_ALPINE_VERSION=$(docker exec -t et cat /etc/os-release | grep VERSION_ID | cut -c 12- | sed -e 's/\r//g')
+DEMYX_ALPINE_VERSION=$(docker exec -t logrotate cat /etc/os-release | grep VERSION_ID | cut -c 12- | sed -e 's/\r//g')
 DEMYX_LOGROTATE_VERSION=$(docker exec -t logrotate logrotate --version | head -n 1 | awk -F '[ ]' '{print $2}' | sed -e 's/\r//g')
 
 # Replace the README.md
