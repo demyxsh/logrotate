@@ -4,6 +4,7 @@
 [![Architecture](https://img.shields.io/badge/linux-amd64-important?style=flat&color=blue)](https://hub.docker.com/r/demyx/logrotate)
 [![Alpine](https://img.shields.io/badge/alpine-latest-informational?style=flat&color=blue)](https://hub.docker.com/r/demyx/logrotate)
 [![Logrotate](https://img.shields.io/badge/logrotate-latest-informational?style=flat&color=blue)](https://hub.docker.com/r/demyx/logrotate)
+[![Buy Me A Coffee](https://img.shields.io/badge/buy_me_coffee-$5-informational?style=flat&color=blue)](https://www.buymeacoffee.com/VXqkQK5tb)
 
 logrotate is designed to ease administration of systems that generate large numbers of log files. It allows automatic rotation, compression, removal, and mailing of log files. Each log file may be handled daily, weekly, monthly, or when it grows too large.
 
