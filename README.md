@@ -13,7 +13,7 @@ TITLE | DESCRIPTION
 WORKDIR | /var/log/demyx
 TIMEZONE | America/Los_Angeles
 
-## Updates
+## Updates & Support
 [![Code Size](https://img.shields.io/github/languages/code-size/demyxco/logrotate?style=flat&color=blue)](https://github.com/demyxco/logrotate)
 [![Repository Size](https://img.shields.io/github/repo-size/demyxco/logrotate?style=flat&color=blue)](https://github.com/demyxco/logrotate)
 [![Watches](https://img.shields.io/github/watchers/demyxco/logrotate?style=flat&color=blue)](https://github.com/demyxco/logrotate)
@@ -22,6 +22,7 @@ TIMEZONE | America/Los_Angeles
 
 * Auto built weekly on Sundays (America/Los_Angeles)
 * Rolling release updates
+* For support: [#demyx](https://webchat.freenode.net/?channel=#demyx)
 
 # Usage
 ```
