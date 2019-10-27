@@ -10,7 +10,7 @@ logrotate is designed to ease administration of systems that generate large numb
 
 TITLE | DESCRIPTION
 --- | ---
-WORKDIR | /var/log/demyx
+ENTRYPOINT | dumb-init demyx-entrypoint
 TIMEZONE | America/Los_Angeles
 
 ## Updates & Support
@@ -31,6 +31,7 @@ logrotate:
     image: demyx/logrotate
     restart: unless-stopped
     environment:
+      DEMYX_LOG: /var/log/demyx
       TZ: America/Los_Angeles
     volumes:
       - ./logs:/var/log/demyx
@@ -38,7 +39,7 @@ logrotate:
 
 ## demyx.conf
 ```
-/var/log/demyx/*.log {
+${DEMYX_LOG}/*.log {
 	su root root
 	weekly
 	missingok
