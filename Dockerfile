@@ -9,7 +9,7 @@ LABEL sh.demyx.registry https://hub.docker.com/u/demyx
 ENV TZ America/Los_Angeles
 
 RUN set -ex; \
-	apk add --no-cache --update logrotate dumb-init tzdata
+    apk add --no-cache --update logrotate dumb-init tzdata
     
 COPY demyx-entrypoint.sh /usr/local/bin/demyx-entrypoint
 

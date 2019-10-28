@@ -6,13 +6,13 @@
 
 echo "
 ${DEMYX_LOG}/*.log {
-	su root root
-	weekly
-	missingok
-	copytruncate
-	rotate 52
-	notifempty
-	sharedscripts
+    su root root
+    weekly
+    missingok
+    copytruncate
+    rotate 52
+    notifempty
+    sharedscripts
 }
 " > /demyx.conf
 
