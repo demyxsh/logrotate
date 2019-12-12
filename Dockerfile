@@ -32,4 +32,6 @@ COPY demyx.sh /usr/local/bin/demyx
 RUN set -ex; \
     chmod +x /usr/local/bin/demyx
 
+USER demyx
+
 ENTRYPOINT ["dumb-init", "demyx"]

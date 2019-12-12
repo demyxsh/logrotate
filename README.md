@@ -12,7 +12,7 @@ Non-root Docker image running Alpine Linux and logrotate.
 DEMYX | LOGROTATE
 --- | ---
 PORT | 3000
-USER | root
+USER | demyx
 WORKDIR | /demyx
 CONFIG | /etc/demyx
 ENTRYPOINT | ["dumb-init", "demyx"]
