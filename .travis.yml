@@ -18,7 +18,7 @@ before_install:
 script:
   - docker build --no-cache -t demyx/"$DEMYX_REPOSITORY" .
   - docker run -d --rm --name logrotate --entrypoint top demyx/"$DEMYX_REPOSITORY"
-  - docker exec -t logrotate logrotate --version
+  - docker exec -t "$DEMYX_REPOSITORY" "$DEMYX_REPOSITORY" --version
 
 after_success:
   - echo "$DEMYX_PASSWORD" | docker login -u "$DEMYX_USERNAME" --password-stdin

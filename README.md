@@ -7,12 +7,42 @@
 [![Buy Me A Coffee](https://img.shields.io/badge/buy_me_coffee-$5-informational?style=flat&color=blue)](https://www.buymeacoffee.com/VXqkQK5tb)
 [![Become a Patron!](https://img.shields.io/badge/become%20a%20patron-$5-informational?style=flat&color=blue)](https://www.patreon.com/bePatron?u=23406156)
 
-logrotate is designed to ease administration of systems that generate large numbers of log files. It allows automatic rotation, compression, removal, and mailing of log files. Each log file may be handled daily, weekly, monthly, or when it grows too large.
+Non-root Docker image running Alpine Linux and logrotate.
 
-TITLE | DESCRIPTION
+DEMYX | LOGROTATE
 --- | ---
-ENTRYPOINT | dumb-init demyx-entrypoint
+PORT | 3000
+USER | root
+WORKDIR | /demyx
+CONFIG | /etc/demyx
+ENTRYPOINT | ["dumb-init", "demyx"]
 TIMEZONE | America/Los_Angeles
+
+# Usage
+```
+logrotate:
+    container_name: logrotate
+    image: demyx/logrotate
+    restart: unless-stopped
+    environment:
+      LOGROTATE_PATH: /var/log/demyx
+      TZ: America/Los_Angeles
+    volumes:
+      - /logs:/var/log/demyx
+```
+
+## logrotate.conf
+```
+${LOGROTATE_PATH}/*.log {
+  su root root
+  weekly
+  missingok
+  copytruncate
+  rotate 52
+  notifempty
+  sharedscripts
+}
+```
 
 ## Updates & Support
 [![Code Size](https://img.shields.io/github/languages/code-size/demyxco/logrotate?style=flat&color=blue)](https://github.com/demyxco/logrotate)
@@ -24,29 +54,3 @@ TIMEZONE | America/Los_Angeles
 * Auto built weekly on Sundays (America/Los_Angeles)
 * Rolling release updates
 * For support: [#demyx](https://webchat.freenode.net/?channel=#demyx)
-
-# Usage
-```
-logrotate:
-    container_name: logrotate
-    image: demyx/logrotate
-    restart: unless-stopped
-    environment:
-      DEMYX_LOG: /var/log/demyx
-      TZ: America/Los_Angeles
-    volumes:
-      - ./logs:/var/log/demyx
-```
-
-## demyx.conf
-```
-${DEMYX_LOG}/*.log {
-  su root root
-  weekly
-  missingok
-  copytruncate
-  rotate 52
-  notifempty
-  sharedscripts
-}
-```
