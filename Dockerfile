@@ -25,8 +25,10 @@ RUN set -ex; \
 RUN set -ex; \
     apk add --no-cache --update bash dumb-init logrotate sudo tzdata
 
-# Copy file 
-COPY demyx.sh /usr/local/bin/demyx
+# Configure sudo
+RUN set -ex; \
+    echo "demyx ALL=(ALL) NOPASSWD: /usr/local/bin/demyx-logrotate" > /etc/sudoers.d/demyx; \
+    echo 'Defaults env_keep +="LOGROTATE_CONFIG"' >> /etc/sudoers.d/demyx
 
 # Finalize
 RUN set -ex; \
