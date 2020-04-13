@@ -1,15 +1,16 @@
-#!/bin/sh
+#!/usr/bin/dumb-init /bin/bash
 # Demyx
 # https://demyx.sh
 set -euo pipefail
 
+# Set default path
 if [[ -z "${LOGROTATE_PATH:-}" ]]; then
     LOGROTATE_PATH="$LOGROTATE_LOG"
     echo "Missing LOGROTATE_PATH environment variable, using default path: ${LOGROTATE_LOG}."
 fi
 
+# Generate config file
 echo "${LOGROTATE_PATH}/*.log {
-    su root root
     weekly
     missingok
     copytruncate
@@ -19,4 +20,5 @@ echo "${LOGROTATE_PATH}/*.log {
 }
 " > "$LOGROTATE_CONFIG"/logrotate.conf
 
-logrotate --force "$LOGROTATE_CONFIG"/logrotate.conf
+# Execute sudo script
+sudo demyx-logrotate
