@@ -30,6 +30,9 @@ RUN set -ex; \
     echo "demyx ALL=(ALL) NOPASSWD: /usr/local/bin/demyx-logrotate" > /etc/sudoers.d/demyx; \
     echo 'Defaults env_keep +="LOGROTATE_CONFIG"' >> /etc/sudoers.d/demyx
 
+# Copy source
+COPY src "$LOGROTATE_CONFIG"
+
 # Finalize
 RUN set -ex; \
     chmod +x /usr/local/bin/demyx
