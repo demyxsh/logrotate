@@ -23,7 +23,7 @@ RUN set -ex; \
 
 # Install logrotate and friends
 RUN set -ex; \
-    apk add --no-cache --update dumb-init logrotate tzdata
+    apk add --no-cache --update bash dumb-init logrotate sudo tzdata
 
 # Copy file 
 COPY demyx.sh /usr/local/bin/demyx
