@@ -35,7 +35,16 @@ COPY src "$LOGROTATE_CONFIG"
 
 # Finalize
 RUN set -ex; \
-    chmod +x /usr/local/bin/demyx
+    # demyx-logrotate
+    chmod +x "$LOGROTATE_CONFIG"/logrotate.sh; \
+    mv "$LOGROTATE_CONFIG"/logrotate.sh /usr/local/bin/demyx-logrotate; \
+    \
+    # demyx-entrypoint
+    chmod +x "$LOGROTATE_CONFIG"/entrypoint.sh; \
+    mv "$LOGROTATE_CONFIG"/entrypoint.sh /usr/local/bin/demyx-entrypoint; \
+    \
+    # Reset permissions
+    chown -R root:root /usr/local/bin
 
 USER demyx
 
