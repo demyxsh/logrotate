@@ -48,4 +48,4 @@ RUN set -ex; \
 
 USER demyx
 
-ENTRYPOINT ["dumb-init", "demyx"]
+ENTRYPOINT ["demyx-entrypoint"]
