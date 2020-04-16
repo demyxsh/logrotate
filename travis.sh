@@ -6,15 +6,15 @@ set -euo pipefail
 IFS=$'\n\t'
 
 # Get versions
-DEMYX_ALPINE_VERSION="$(docker exec "$DEMYX_REPOSITORY" cat /etc/os-release | grep VERSION_ID | cut -c 12- | sed -e 's/\r//g')"
+DEMYX_LOGROTATE_ALPINE_VERSION="$(docker exec "$DEMYX_REPOSITORY" cat /etc/os-release | grep VERSION_ID | cut -c 12- | sed -e 's/\r//g')"
 DEMYX_LOGROTATE_VERSION="$(docker exec "$DEMYX_REPOSITORY" "$DEMYX_REPOSITORY" --version | head -n 1 | awk -F '[ ]' '{print $2}' | sed -e 's/\r//g')"
 
 # Replace versions
-sed -i "s|alpine-.*.-informational|alpine-${DEMYX_ALPINE_VERSION}-informational|g" README.md
+sed -i "s|alpine-.*.-informational|alpine-${DEMYX_LOGROTATE_ALPINE_VERSION}-informational|g" README.md
 sed -i "s|${DEMYX_REPOSITORY}-.*.-informational|${DEMYX_REPOSITORY}-${DEMYX_LOGROTATE_VERSION}-informational|g" README.md
 
 # Echo versions to file
-echo "DEMYX_ALPINE_VERSION=$DEMYX_ALPINE_VERSION
+echo "DEMYX_LOGROTATE_ALPINE_VERSION=$DEMYX_LOGROTATE_ALPINE_VERSION
 DEMYX_LOGROTATE_VERSION=$DEMYX_LOGROTATE_VERSION" > VERSION
 
 # Push back to GitHub
@@ -23,7 +23,7 @@ git config --global user.name "Travis CI"
 git remote set-url origin https://${DEMYX_GITHUB_TOKEN}@github.com/demyxco/"$DEMYX_REPOSITORY".git
 # Commit VERSION first
 git add VERSION
-git commit -m "ALPINE $DEMYX_ALPINE_VERSION, LOGROTATE $DEMYX_LOGROTATE_VERSION"
+git commit -m "ALPINE $DEMYX_LOGROTATE_ALPINE_VERSION, LOGROTATE $DEMYX_LOGROTATE_VERSION"
 git push origin HEAD:master
 # Commit the rest
 git add .
