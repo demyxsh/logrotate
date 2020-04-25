@@ -51,6 +51,6 @@ ${LOGROTATE_PATH}/*.log {
 [![Stars](https://img.shields.io/github/stars/demyxco/logrotate?style=flat&color=blue)](https://github.com/demyxco/logrotate)
 [![Forks](https://img.shields.io/github/forks/demyxco/logrotate?style=flat&color=blue)](https://github.com/demyxco/logrotate)
 
-* Auto built weekly on Sundays (America/Los_Angeles)
+* Auto built weekly on Saturdays (America/Los_Angeles)
 * Rolling release updates
 * For support: [#demyx](https://webchat.freenode.net/?channel=#demyx)
