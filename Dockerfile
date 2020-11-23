@@ -31,7 +31,7 @@ RUN set -ex; \
 
 # Configure sudo
 RUN set -ex; \
-    /bin/echo "demyx ALL=(ALL) NOPASSWD: /usr/local/bin/demyx-logrotate" > /etc/sudoers.d/demyx
+    /bin/echo "demyx ALL=(ALL) NOPASSWD:SETENV: /usr/local/bin/demyx-logrotate" > /etc/sudoers.d/demyx
 
 # Imports
 COPY --chown=demyx:demyx src "$DEMYX_CONFIG"
