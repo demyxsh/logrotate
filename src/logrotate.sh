@@ -1,7 +1,10 @@
 #!/bin/bash
 
+# Support for old variables
+[[ -n "${LOGROTATE_CONFIG:-}" ]] && DEMYX_CONFIG="$LOGROTATE_CONFIG"
+
 # Set config file as root
-chown root:root "$LOGROTATE_CONFIG"/logrotate.conf
+/bin/chown root:root "$DEMYX_CONFIG"/logrotate.conf
 
 # Force rotate logs
-logrotate --force "$LOGROTATE_CONFIG"/logrotate.conf
+/usr/sbin/logrotate --force "$DEMYX_CONFIG"/logrotate.conf

@@ -15,7 +15,7 @@ PORT | 3000
 USER | demyx
 WORKDIR | /demyx
 CONFIG | /etc/demyx
-ENTRYPOINT | ["dumb-init", "demyx"]
+ENTRYPOINT | /usr/local/bin/demyx-entrypoint
 TIMEZONE | America/Los_Angeles
 
 # Usage
@@ -25,7 +25,7 @@ logrotate:
     image: demyx/logrotate
     restart: unless-stopped
     environment:
-      LOGROTATE_PATH: /var/log/demyx
+      DEMYX_PATH: /var/log/demyx
       TZ: America/Los_Angeles
     volumes:
       - /logs:/var/log/demyx
@@ -33,7 +33,7 @@ logrotate:
 
 ## logrotate.conf
 ```
-${LOGROTATE_PATH}/*.log {
+${DEMYX_PATH}/*.log {
   su root root
   weekly
   missingok
