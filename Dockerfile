@@ -10,6 +10,7 @@ LABEL sh.demyx.registry     https://hub.docker.com/u/demyx
 ENV DEMYX                   /demyx
 ENV DEMYX_CONFIG            /etc/demyx
 ENV DEMYX_LOG               /var/log/demyx
+ENV DEMYX_PATH              "$DEMYX_LOG"
 ENV TZ                      America/Los_Angeles
 # Support for old variables
 ENV LOGROTATE_ROOT          /demyx

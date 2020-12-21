@@ -8,12 +8,6 @@ set -euo pipefail
 [[ -n "${LOGROTATE_LOG:-}" ]] && DEMYX_LOG="$LOGROTATE_LOG"
 [[ -n "${LOGROTATE_PATH:-}" ]] && DEMYX_PATH="$LOGROTATE_PATH"
 
-# Set default path
-if [[ -z "${DEMYX_PATH:-}" ]]; then
-    DEMYX_PATH="$DEMYX_LOG"
-    /bin/echo "Missing DEMYX_PATH environment variable, using default path: ${DEMYX_LOG}."
-fi
-
 # Generate config file
 /bin/echo "${DEMYX_PATH}/*.log {
     weekly
