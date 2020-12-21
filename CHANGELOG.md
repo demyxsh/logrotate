@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2020-12-20
+### Changed
+- Set default path in Dockerfile
+- Set logrotate interval through environment variable
+
 ## 2020-11-22
 ### Changed
 - Rename variables and support old ones
