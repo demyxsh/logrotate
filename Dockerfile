@@ -9,6 +9,7 @@ LABEL sh.demyx.registry     https://hub.docker.com/u/demyx
 # Set default variables
 ENV DEMYX                   /demyx
 ENV DEMYX_CONFIG            /etc/demyx
+ENV DEMYX_INTERVAL          weekly
 ENV DEMYX_LOG               /var/log/demyx
 ENV DEMYX_PATH              "$DEMYX_LOG"
 ENV TZ                      America/Los_Angeles

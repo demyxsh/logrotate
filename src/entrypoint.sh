@@ -10,7 +10,7 @@ set -euo pipefail
 
 # Generate config file
 /bin/echo "${DEMYX_PATH}/*.log {
-    weekly
+    $DEMYX_INTERVAL
     missingok
     copytruncate
     rotate 52

@@ -25,6 +25,7 @@ logrotate:
     image: demyx/logrotate
     restart: unless-stopped
     environment:
+      DEMYX_INTERVAL
       DEMYX_PATH: /var/log/demyx
       TZ: America/Los_Angeles
     volumes:
