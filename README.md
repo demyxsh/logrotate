@@ -15,7 +15,7 @@ PORT | 3000
 USER | demyx
 WORKDIR | /demyx
 CONFIG | /etc/demyx
-ENTRYPOINT | /usr/local/bin/demyx-entrypoint
+ENTRYPOINT | demyx-entrypoint
 TIMEZONE | America/Los_Angeles
 
 # Usage

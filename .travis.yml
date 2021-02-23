@@ -13,14 +13,14 @@ env:
   - DEMYX_USERNAME=demyx DEMYX_REPOSITORY=logrotate
 
 before_install:
-  - /usr/bin/docker pull alpine
+  - docker pull alpine
 
 script:
-  - /usr/bin/docker build --no-cache -t demyx/"$DEMYX_REPOSITORY" .
-  - /usr/bin/docker run -d --rm --name="$DEMYX_REPOSITORY" --entrypoint=/usr/bin/top demyx/"$DEMYX_REPOSITORY"
-  - /usr/bin/docker exec -t "$DEMYX_REPOSITORY" /usr/sbin/"$DEMYX_REPOSITORY" --version
+  - docker build --no-cache -t demyx/"$DEMYX_REPOSITORY" .
+  - docker run -d --rm --name="$DEMYX_REPOSITORY" --entrypoint=top demyx/"$DEMYX_REPOSITORY"
+  - docker exec -t "$DEMYX_REPOSITORY" "$DEMYX_REPOSITORY" --version
 
 after_success:
-  - /bin/echo "$DEMYX_PASSWORD" | /usr/bin/docker login -u "$DEMYX_USERNAME" --password-stdin
-  - /usr/bin/docker push demyx/"$DEMYX_REPOSITORY"
-  - /bin/bash travis.sh
+  - echo "$DEMYX_PASSWORD" | docker login -u "$DEMYX_USERNAME" --password-stdin
+  - docker push demyx/"$DEMYX_REPOSITORY"
+  - bash travis.sh
