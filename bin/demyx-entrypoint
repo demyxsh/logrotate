@@ -9,7 +9,7 @@ set -euo pipefail
 [[ -n "${LOGROTATE_PATH:-}" ]] && DEMYX_PATH="$LOGROTATE_PATH"
 
 # Generate config file
-/bin/echo "${DEMYX_PATH}/*.log {
+echo "${DEMYX_PATH}/*.log {
     $DEMYX_INTERVAL
     missingok
     copytruncate
@@ -20,4 +20,4 @@ set -euo pipefail
 " > "$DEMYX_CONFIG"/logrotate.conf
 
 # Execute sudo script
-/usr/bin/sudo -E /usr/local/bin/demyx-logrotate
+sudo -E demyx-logrotate
