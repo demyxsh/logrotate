@@ -18,39 +18,37 @@ ENV LOGROTATE_ROOT          /demyx
 ENV LOGROTATE_CONFIG        /etc/demyx
 ENV LOGROTATE_LOG           /var/log/demyx
 
-# Configure Demyx
-RUN set -ex; \
-    /usr/sbin/addgroup -g 1000 -S demyx; \
-    /usr/sbin/adduser -u 1000 -D -S -G demyx demyx; \
-    \
-    /usr/bin/install -d -m 0755 -o demyx -g demyx "$DEMYX"; \
-    /usr/bin/install -d -m 0755 -o demyx -g demyx "$DEMYX_CONFIG"; \
-    /usr/bin/install -d -m 0755 -o demyx -g demyx "$DEMYX_LOG"
-
 # Packages
 RUN set -ex; \
-    /sbin/apk --update --no-cache add bash logrotate sudo tzdata
+    apk --update --no-cache add bash logrotate sudo tzdata
+
+# Configure Demyx
+RUN set -ex; \
+    # Create demyx user
+    addgroup -g 1000 -S demyx; \
+    adduser -u 1000 -D -S -G demyx demyx; \
+    \
+    # Create demyx directories
+    install -d -m 0755 -o demyx -g demyx "$DEMYX"; \
+    install -d -m 0755 -o demyx -g demyx "$DEMYX_CONFIG"; \
+    install -d -m 0755 -o demyx -g demyx "$DEMYX_LOG"; \
+    \
+    # Update .bashrc
+    echo 'PS1="$(whoami)@\h:\w \$ "' > /home/demyx/.bashrc; \
+    echo 'PS1="$(whoami)@\h:\w \$ "' > /root/.bashrc
 
 # Configure sudo
 RUN set -ex; \
-    /bin/echo "demyx ALL=(ALL) NOPASSWD:SETENV: /usr/local/bin/demyx-logrotate" > /etc/sudoers.d/demyx
+    echo "demyx ALL=(ALL) NOPASSWD:SETENV: /usr/local/bin/demyx-logrotate" > /etc/sudoers.d/demyx
 
 # Imports
-COPY --chown=demyx:demyx src "$DEMYX_CONFIG"
+COPY --chown=root:root bin /usr/local/bin
 
 # Finalize
 RUN set -ex; \
-    # demyx-logrotate
-    /bin/cp "$DEMYX_CONFIG"/logrotate.sh /usr/local/bin/demyx-logrotate; \
-    /bin/chmod +x /usr/local/bin/demyx-logrotate; \
-    \
-    # demyx-entrypoint
-    /bin/cp "$DEMYX_CONFIG"/entrypoint.sh /usr/local/bin/demyx-entrypoint; \
-    /bin/chmod +x /usr/local/bin/demyx-entrypoint; \
-    \
-    # Reset permissions
-    /bin/chown -R root:root /usr/local/bin
+    # Set ownership
+    chown -R root:root /usr/local/bin
 
 USER demyx
 
-ENTRYPOINT ["/usr/local/bin/demyx-entrypoint"]
+ENTRYPOINT ["demyx-entrypoint"]
