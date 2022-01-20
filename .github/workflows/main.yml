@@ -39,7 +39,7 @@ jobs:
       - name: Version
         run: |
           DEMYX_LOGROTATE_ALPINE_VERSION="$(docker exec ${{ env.DEMYX_REPOSITORY }} cat /etc/os-release | grep VERSION_ID | cut -c 12-)"
-          DEMYX_LOGROTATE_VERSION="$(docker exec ${{ env.DEMYX_REPOSITORY }} --version | head -n 1 | awk -F '[ ]' '{print $2}')"
+          DEMYX_LOGROTATE_VERSION="$(docker exec ${{ env.DEMYX_REPOSITORY }} ${{ env.DEMYX_REPOSITORY }} --version | head -n 1 | awk -F '[ ]' '{print $2}')"
           DEMYX_JQ="$(jq ".alpine = \"$DEMYX_LOGROTATE_ALPINE_VERSION\" | .logrotate = \"$DEMYX_LOGROTATE_VERSION\"" version.json)"
 
           # Update versions
