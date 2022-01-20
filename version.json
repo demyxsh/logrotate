@@ -1,4 +1,4 @@
 {
-  "alpine": "init",
-  "logrotate": "init"
+  "alpine": "3.15.0",
+  "logrotate": ""
 }
