@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2022-09-14
+- Fix example [2b75753](https://github.com/demyxsh/logrotate/commit/2b757533b5d461e94744c1ad8762af095f009635)
+- Add new variable: DEMYX_ROTATE [c178454](https://github.com/demyxsh/logrotate/commit/c178454156a0901d185ae2c04df715273d59313a)
+
 ## 2021-02-22
 - Added
     - `bin/demyx-entrypoint`
