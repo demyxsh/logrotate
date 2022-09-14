@@ -36,7 +36,7 @@ logrotate:
     image: demyx/logrotate
     restart: unless-stopped
     environment:
-      DEMYX_INTERVAL
+      DEMYX_INTERVAL: weekly
       DEMYX_PATH: /var/log/demyx
       DEMYX_ROTATE: 52
       TZ: America/Los_Angeles
