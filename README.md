@@ -38,6 +38,7 @@ logrotate:
     environment:
       DEMYX_INTERVAL
       DEMYX_PATH: /var/log/demyx
+      DEMYX_ROTATE: 52
       TZ: America/Los_Angeles
     volumes:
       - /logs:/var/log/demyx

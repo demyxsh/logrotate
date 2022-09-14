@@ -13,7 +13,7 @@ echo "${DEMYX_PATH}/*.log {
     $DEMYX_INTERVAL
     missingok
     copytruncate
-    rotate 52
+    rotate $DEMYX_ROTATE
     notifempty
     sharedscripts
 }
